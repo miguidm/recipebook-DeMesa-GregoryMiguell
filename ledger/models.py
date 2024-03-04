@@ -9,23 +9,27 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+    
     def get_absolute_url(self):
-        return reverse('ledger:ingredient',args=[str(self.pk)])
+        return reverse('ledger:recipe',args=[self.pk])
+    
 class  Ingredient(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+    
     def get_absolute_url(self):
-        return reverse('ledger:recipe',args=[str(self.pk)])
+        return reverse('ledger:ingredient',args=[self.pk])
+    
 class RecipeIngredient(models.Model):
     quantity = models.CharField(max_length=50)
     ingredient = models.ForeignKey(
         Ingredient, 
         on_delete=models.CASCADE,
-        related_name= "ingredient")
+        related_name= "recipe")
     
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name= 'recipe')
+        related_name= 'ingredients')
