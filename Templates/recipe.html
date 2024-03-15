@@ -2,11 +2,12 @@
 {% load static %}
 {% block title %}Recipe{% endblock %}
 {% block content %}
-        <h3> Author: {{ recipe.getAuthorName }}</h3>
+        <header> <h2>These are the ingredients for {{recipe.name}}</h2> </header>
         <ul>
             {% for ingredient in recipe.ingredients.all %}
         <li>{{ ingredient.ingredient.name }} - {{ingredient.quantity}}</li>
             {% endfor %}
         </ul>
+        <h3> Author: {{ recipe.authorçgit }}</h3>
 {% endblock %}
     
