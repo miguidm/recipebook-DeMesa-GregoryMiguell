@@ -5,7 +5,21 @@
     <meta name = "viewport" content ="width=device-width, initial-scale=1">
 </head>
 <body>
-    <header><h1> Recipe Book </h1></header>
+    <header><h1> Recipe Book </h1>
+    {% if request.user.is_authenticated %}
+    
+        <form method="post" action = "{% url 'logout' %}">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button type="submit"> Log out</button>
+        </form>
+    {% else %}
+        <form>
+           <a href = "{% url 'login' %}" >Logi</a>
+        </form>
+        
+    {% endif %}
+    </header>
     <div id="content">
         {%block content %}{% endblock %}
     </div>
